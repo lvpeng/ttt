@@ -34,13 +34,18 @@ var obj2 = {
 
 var obj3 = {}
 var obj4 = {}
-
+var fakeObj = {}
 
 Object.setPrototypeOf(obj4, Date.prototype)
 // assert.deepEqual(obj1, obj2);
-assert.deepStrictEqual(obj3, obj4)
+// assert.deepStrictEqua    l(obj3, obj4)
 
 
 
 //每一个Object对象都有一个`prototype`属性　，这个属性是一个对象
 // Object.prototype.toString()
+
+
+assert.doesNotThrow(() => {
+    throw new TypeError('type error')
+}, TypeError, 'oops')
