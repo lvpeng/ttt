@@ -10,9 +10,11 @@ rr.on('end', () => {
 });
 
 const buf1 = Buffer.alloc(10)
-buf1.byteLength;
 
-const buf2 = Buffer.alloc(10,1)
+const buf2 = Buffer.alloc(10,1);
 
+const buf3 = Buffer.allocUnsafe(10);
 
-const buf3 = Buffer.allocUnsafe(10)
+const buf4 = Buffer.from([1,2,3])
+
+const buf5 = Buffer.from('tset')
