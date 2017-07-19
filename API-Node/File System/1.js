@@ -3,7 +3,7 @@ const path = require("path");
 
 const filepath = path.resolve(__dirname, "test.txt")
 fs.open(filepath, 'a+', function(err, fd){
-    console.log(fd)
+    fs.read(fd, )
 })
 
 // fs.watch(filepath, { encoding:"utf8"}, (eventType, filename) => {

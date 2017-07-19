@@ -1,3 +1,22 @@
+const { spawn } = require('child_process')
+// const { exec } = require('child_process')
+const child = spawn(process.argv[0], ['child_program.js'] , {
+  cwd: process.cwd(),
+  detached: true,
+  stdio: 'ignore'
+})
+
+
+child.unref()
+child.stdout.on('data', (data) => {
+   console.log(`stdout: \r\n ${data}`);
+})
+
+ls.stderr.on('data', data =>{
+  console.log(`stderr: \r\n ${data}`)
+})
+
+
 // const spawn = require('child_process').spawn;
 //
 // const ls = spawn('ls', ['-lh', __dirname])
@@ -20,10 +39,10 @@
 //   console.log(stdout);
 // })
 
-const execFile = require('child_process').execFile;
-const child = execFile('node', ['--version'], (error, stdout, stderr) => {
-  if (error) {
-    throw error;
-  }
-  console.log(stdout);
-});
+// const execFile = require('child_process').execFile;
+// const child = execFile('node', ['--version'], (error, stdout, stderr) => {
+//   if (error) {
+//     throw error;
+//   }
+//   console.log(stdout);
+// });
