@@ -1,19 +1,16 @@
 const EventEmitter = require('events')
-
 class MyEmitter extends EventEmitter{}
 
-const myemitter  = new MyEmitter()
+const myEmitter = new MyEmitter()
 
-myemitter.on('event', function(a,b) {
-   console.log(a, b, this)
-  }
-)
-myemitter.on('event', () => {
-  console.log(this)
+myEmitter.on('event', function(x, y){
+  console.log(x, y,this);
 })
-myemitter.emit('event', 'a', 123)
-myemitter.emit('event', false)
-
+// myEmitter.on('event', () => {
+//   console.log(this)
+// })
+myEmitter.emit('event', 1,2)
+// myEmitter.emit('event', false)
 
 // myemitter.on('error', () => {
 //   console.log('oh, error');
@@ -62,3 +59,9 @@ myemitter.emit('event', false)
 // myemitter.on('event', callbackB)
 // myemitter.emit('event')
 // myemitter.emit('event')
+
+
+myEmitter.on('error', (err) => {
+  console.error('error');
+})
+myEmitter.emit('error')

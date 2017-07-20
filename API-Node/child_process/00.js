@@ -10,3 +10,9 @@ if (process.getgroups) {
 const child_proces = fork(path.join(__dirname, '/foo.js'), [], {
 
 })
+
+const ls = spawn('ls', ['-lh', '/usr'])
+
+ls.stdout.on('data', (data) =>{
+  
+})
