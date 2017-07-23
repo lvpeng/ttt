@@ -1,0 +1,1 @@
+console.log(`child run , arg: ${process.argv[2]}`)

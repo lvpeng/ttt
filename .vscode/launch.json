@@ -4,17 +4,23 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch via NPM",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "www.baidu.com",
+                "www.tencent.com",
+                "wwww.github.com"
+            ],
+            "port": 5858
+        },
     {
         "type": "node",
         "request": "launch",
         "name": "Launch Program",
-        "program": "${workspaceRoot}/learnyounode/2.babysteps.js"
-    },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch Program",
-            "program": "${file}"
-        }
+        "program": "${workspaceRoot}/learnyounode/9.jugglingAsync.js" 
+    }
     ]
 }
