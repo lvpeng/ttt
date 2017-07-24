@@ -1,31 +1,35 @@
-const http = require('http');
-const url = require('url');
+var http = require('http')
+var url = require('url')
 
-const options = {
-    host: 'localhost',
-    path: '/api/parsetime'
+function parsetime (time) {
+  return {
+    hour: time.getHours(),
+    minute: time.getMinutes(),
+    second: time.getSeconds()
+  }
 }
 
-const server = http.createServer((req, res) => {
-    var isoTime = url.parse(req.url).iso 
-    var timeObj = {
-        "hour": new Date(isoTime).getHours(),
-        "minute": new Date(isoTime).getMinutes(),
-        "second": new Date(isoTime).getSeconds()
-    }
-    res.writeHead(200, {
-        'Content-type': 'application/json' 
-    })
-    res.write(JSON.stringify(timeObj))
+function unixtime (time) {
+  return { unixtime: time.getTime() }
+}
+
+var server = http.createServer(function (req, res) {
+  var parsedUrl = url.parse(req.url, true)
+  var time = new Date(parsedUrl.query.iso)
+  var result
+
+  if (/^\/api\/parsetime/.test(req.url)) {
+    result = parsetime(time)
+  } else if (/^\/api\/unixtime/.test(req.url)) {
+    result = unixtime(time)
+  }
+
+  if (result) {
+    res.writeHead(200, { 'Content-Type': 'application/json' })
+    res.end(JSON.stringify(result))
+  } else {
+    res.writeHead(404)
     res.end()
+  }
 })
-
-server.listen('/api/parsetime', ()=>{
-    
-})
-server.listen('/api/unixtime', (socket) => {
-    
-})
-
 server.listen(Number(process.argv[2]))
-
